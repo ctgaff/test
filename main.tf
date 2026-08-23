@@ -16,3 +16,14 @@ data "aws_caller_identity" "current" {}
 output "aws_account_id" {
   value = data.aws_caller_identity.current.account_id
 }
+
+resource "aws_s3_bucket" "orbit_storage" {
+  bucket_prefix = "orbit-storage-"
+
+  tags = {
+    name      = "Orbit Labs Storage"
+    managedBy = "Spacelift"
+    mission   = "First Launch"
+    project   = "Orbit-labs"
+  }
+}
